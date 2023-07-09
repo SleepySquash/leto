@@ -270,11 +270,7 @@ class _GraphQLNonNullListType<Value, Serialized>
 
   @override
   List<Value> deserialize(SerdeCtx serdeCtx, List<Serialized?> serialized) {
-    return serialized
-        .map<Value>((v) => v is Value
-            ? v
-            : ofType.deserialize(serdeCtx, v as Serialized))
-        .toList();
+    return serialized.whereType<Value>().toList();
   }
 
   @override
@@ -341,13 +337,7 @@ class _GraphQLNullableListType<Value, Serialized>
   @override
   List<Value?> deserialize(SerdeCtx serdeCtx, List<Serialized?> serialized) {
     if (ofType.isNonNullable) {
-      return serialized
-          .map<Value>(
-            (v) => v is Value
-                ? v
-                : ofType.deserialize(serdeCtx, v as Serialized),
-          )
-          .toList();
+      return serialized.whereType<Value>().toList();
     }
     return serialized
         .map<Value?>(

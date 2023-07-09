@@ -12,14 +12,18 @@ dependencies:
   clock: ^1.1.0
   collection: ^1.16.0
   crypto: ^3.0.2
-  gql: ^0.14.0
+  gql: ^1.0.0
   leto_schema: ^0.0.1-dev.3
   meta: ^1.0.0
-  oxidized: ^5.0.1
+  oxidized: ^6.0.0
   source_span: ^1.0.0
   stream_channel: ^2.0.0
 
 dev_dependencies:
   fake_async: ^1.2.0
-  lint: ^1.0.0
+  lint: ^2.1.2
   test: ^1.0.0
+
+dependency_overrides:
+  leto_schema:
+    path: ../leto_schema

@@ -21,4 +21,8 @@ dependencies:
   source_gen: ^1.4.0
 
 dev_dependencies:
-  lint: ^1.0.0
+  lint: ^2.1.2
+
+dependency_overrides:
+  leto_schema:
+    path: ../leto_schema
