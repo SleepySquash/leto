@@ -33,6 +33,7 @@ Visitor uniqueArgumentNamesRule(
         );
       }
     }
+    return null;
   }
 
   visitor.add<FieldNode>((node) => checkArgUniqueness(node.arguments));

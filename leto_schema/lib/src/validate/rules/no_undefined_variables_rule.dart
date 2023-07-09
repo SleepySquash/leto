@@ -19,10 +19,12 @@ Visitor noUndefinedVariablesRule(
 
   visitor.add<VariableDefinitionNode>((node) {
     variableNameDefined[node.variable.name.value] = true;
+    return null;
   });
   visitor.add<OperationDefinitionNode>(
     (node) {
       variableNameDefined = {};
+      return null;
     },
     leave: (operation) {
       final usages = context.getRecursiveVariableUsages(operation);
@@ -50,6 +52,7 @@ Visitor noUndefinedVariablesRule(
           );
         }
       }
+      return null;
     },
   );
 

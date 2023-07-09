@@ -51,6 +51,7 @@ Visitor loneSchemaDefinitionRule(
       );
     }
     schemaDefinitionsCount++;
+    return null;
   });
   return visitor;
 }

@@ -91,6 +91,7 @@ Visitor uniqueDirectivesPerLocationRule(
         }
       }
     }
+    return null;
   });
   return visitor;
 }

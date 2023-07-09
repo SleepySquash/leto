@@ -41,14 +41,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
-  buffer:
-    dependency: transitive
-    description:
-      name: buffer
-      sha256: "8962c12174f53e2e848a6acd7ac7fd63d8a1a6a316c20c458a832d87eba5422a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.2.0"
   build:
     dependency: transitive
     description:
@@ -165,10 +157,10 @@ packages:
     dependency: "direct main"
     description:
       name: crypto
-      sha256: aa274aa7774f8964e4f4f38cc994db7b6158dd36e9187aaceaddc994b35c6c67
+      sha256: ff625774173754681d66daaf4a448684fb04b78f902da9cb3d308c19cc5e8bab
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.2"
+    version: "3.0.3"
   dart_style:
     dependency: transitive
     description:
@@ -185,14 +177,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.5"
-  ffi:
-    dependency: transitive
-    description:
-      name: ffi
-      sha256: a38574032c5f1dd06c4aee541789906c12ccaab8ba01446e800d9c5b79c4a978
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
   file:
     dependency: transitive
     description:
@@ -281,14 +265,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
-  hotreloader:
-    dependency: transitive
-    description:
-      name: hotreloader
-      sha256: "66b78edf340352fcdd2043ab6116e58ec018c5968cab6485cde0f1769d28e0b8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.5"
   http:
     dependency: "direct dev"
     description:
@@ -297,14 +273,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.13.5"
-  http_methods:
-    dependency: transitive
-    description:
-      name: http_methods
-      sha256: c192bb6fb4ae99d06053f67a2c1c65350a29bc778a39d9a12b96bd2ec820e9dc
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
   http_multi_server:
     dependency: transitive
     description:
@@ -353,14 +321,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.7.0"
-  json_path:
-    dependency: transitive
-    description:
-      name: json_path
-      sha256: "490e65ffe2e62cd506b13865398cef09741252bec3652c995f9d58b4057c5940"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.1"
   json_serializable:
     dependency: "direct dev"
     description:
@@ -372,24 +332,19 @@ packages:
   leto:
     dependency: "direct main"
     description:
-      path: "../leto"
-      relative: true
-    source: path
+      name: leto
+      sha256: af4f1bea856b956a3b8635d74f928910cb397b44f514afc4cfd066a8b1362af2
+      url: "https://pub.dev"
+    source: hosted
     version: "0.0.1-dev.1"
   leto_schema:
     dependency: "direct main"
     description:
-      path: "../leto_schema"
-      relative: true
-    source: path
+      name: leto_schema
+      sha256: "10fe76b4f343963283702d97c4144f809d4e4e858ffa9bf1d97856c4a66169e0"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.0.1-dev.3"
-  leto_shelf_example:
-    dependency: "direct dev"
-    description:
-      path: example
-      relative: true
-    source: path
-    version: "0.0.0"
   lint:
     dependency: "direct dev"
     description:
@@ -430,22 +385,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
-  mime_type:
-    dependency: transitive
-    description:
-      name: mime_type
-      sha256: "2ad6e67d3d2de9ac0f8ef5352d998fd103cb21351ae8c02fb0c78b079b37d275"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
-  mysql1:
-    dependency: transitive
-    description:
-      name: mysql1
-      sha256: "75c685f3d35cffca00e7ec318b916dc9de91f25e6139829225a2b984955d1469"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.19.2"
   node_preamble:
     dependency: transitive
     description:
@@ -478,14 +417,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.3"
-  pedantic:
-    dependency: transitive
-    description:
-      name: pedantic
-      sha256: "67fc27ed9639506c856c840ccce7594d0bdcd91bc8d53d6e52359449a1d50602"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.11.1"
   petitparser:
     dependency: transitive
     description:
@@ -502,14 +433,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
-  postgres:
-    dependency: transitive
-    description:
-      name: postgres
-      sha256: ef3ef88ce207403f5de4aa1c37521eeada89184e9ddb3597d52cb9c4eb7fb367
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.5.2"
   pub_semver:
     dependency: transitive
     description:
@@ -526,15 +449,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
-  query_builder:
-    dependency: transitive
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "4de86295309993ae1f13a57ff3da6b8d6950dfad"
-      url: "https://github.com/juancastillo0/query_builder"
-    source: git
-    version: "1.0.0"
   quiver:
     dependency: transitive
     description:
@@ -543,14 +457,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
-  rfc_6901:
-    dependency: transitive
-    description:
-      name: rfc_6901
-      sha256: "8d97680dada633146cf75ab9382f2ce2b7e4bd63ceecd867416cf43b5832b988"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.1"
   rxdart:
     dependency: transitive
     description:
@@ -559,38 +465,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
-  sasl_scram:
-    dependency: transitive
-    description:
-      name: sasl_scram
-      sha256: a47207a436eb650f8fdcf54a2e2587b850dc3caef9973ce01f332b07a6fc9cb9
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.1"
-  saslprep:
-    dependency: transitive
-    description:
-      name: saslprep
-      sha256: "79c9e163a82f55da542feaf0f7a59031e74493299c92008b2b404cd88d639bb4"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.2"
   shelf:
     dependency: "direct main"
     description:
       name: shelf
-      sha256: c24a96135a2ccd62c64b69315a14adc5c3419df63b4d7c05832a346fdb73682c
+      sha256: ad29c505aee705f41a4d8963641f91ac4cee3c8fad5947e033390a7bd8180fa4
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.0"
-  shelf_hotreload:
-    dependency: transitive
-    description:
-      name: shelf_hotreload
-      sha256: ba2159781d7353aa75e86aa243a029a038ae00c50f39a238e21078c39d4d8e86
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.2"
+    version: "1.4.1"
   shelf_packages_handler:
     dependency: transitive
     description:
@@ -599,22 +481,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
-  shelf_plus:
-    dependency: transitive
-    description:
-      name: shelf_plus
-      sha256: c3f088a630e0927f305e79a599875bd32ec7132288303762061f399e6d2d2d0d
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.2"
-  shelf_router:
-    dependency: transitive
-    description:
-      name: shelf_router
-      sha256: "0b0bfb835e8b2bb43c5341ee689f0d2851e9cea377a4f2db4ec06a1a99beace4"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.3"
   shelf_static:
     dependency: transitive
     description:
@@ -627,10 +493,10 @@ packages:
     dependency: "direct main"
     description:
       name: shelf_web_socket
-      sha256: a988c0e8d8ffbdb8a28aa7ec8e449c260f3deb808781fe1284d22c5bba7156e8
+      sha256: "9ca081be41c60190ebcb4766b2486a7d50261db7bd0f5d9615f2d653637a84c1"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.3"
+    version: "1.0.4"
   source_gen:
     dependency: transitive
     description:
@@ -671,14 +537,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
-  sqlite3:
-    dependency: transitive
-    description:
-      name: sqlite3
-      sha256: db6350456720a4088a364bbe02052d43056a5ffbd4816fe9d28310dcfbe0dc05
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.9.1"
   stack_trace:
     dependency: transitive
     description:
@@ -711,14 +569,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-  supercharged_dart:
-    dependency: transitive
-    description:
-      name: supercharged_dart
-      sha256: cb95edda32eacd27664089700a750120be41daa84aa6cd2aeded46227c16b867
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.1"
   term_glyph:
     dependency: transitive
     description:
@@ -775,14 +625,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
-  unorm_dart:
-    dependency: transitive
-    description:
-      name: unorm_dart
-      sha256: "5b35bff83fce4d76467641438f9e867dc9bcfdb8c1694854f230579d68cd8f4b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.0"
   uuid:
     dependency: transitive
     description:
@@ -791,22 +633,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.7"
-  valida:
-    dependency: transitive
-    description:
-      name: valida
-      sha256: ce8bc0305fb2f63a4c59d46f0865a8027bc166db6ed5c0d546df9b778c4209cd
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.0-dev.1"
-  validators:
-    dependency: transitive
-    description:
-      name: validators
-      sha256: "884515951f831a9c669a41ed6c4d3c61c2a0e8ec6bca761a4480b28e99cecf5d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.0"
   vm_service:
     dependency: transitive
     description:
@@ -848,4 +674,4 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.19.0 <4.0.0"
+  dart: ">=3.0.0 <4.0.0"

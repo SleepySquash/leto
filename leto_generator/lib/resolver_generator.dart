@@ -9,7 +9,6 @@ import 'package:leto_generator/utils.dart';
 import 'package:leto_schema/leto_schema.dart';
 import 'package:recase/recase.dart';
 import 'package:source_gen/source_gen.dart';
-import 'package:valida/valida.dart';
 
 /// Generates GraphQL schemas, statically.
 Builder graphQLResolverBuilder(BuilderOptions options) {
@@ -19,9 +18,7 @@ Builder graphQLResolverBuilder(BuilderOptions options) {
   );
 }
 
-const _validateTypeChecker = TypeChecker.fromRuntime(Valida);
 const _resolverTypeChecker = TypeChecker.fromRuntime(GraphQLResolver);
-const _validationTypeChecker = TypeChecker.fromRuntime(Validation);
 const _classResolverTypeChecker = TypeChecker.fromRuntime(ClassResolver);
 
 bool isReqCtx(DartType type) {
@@ -226,42 +223,11 @@ Future<String> resolverFunctionBodyFromElement(
   GeneratorCtx ctx,
   ExecutableElement element,
 ) async {
-  bool _hasValidation(Element? element) =>
-      element != null && _validateTypeChecker.hasAnnotationOfExact(element);
-  bool _isValidation(Element? element) =>
-      element != null && _validationTypeChecker.isAssignableFrom(element);
+  bool _isValidation(Element? element) => true;
 
   final validationsInParams = <ParameterElement>[];
   final validations = <String>[];
 
-  String validationErrorMapAddAll(String validation) {
-    return 'validationErrorMap.addAll($validation.errorsMap.map((k, v) =>'
-        ' MapEntry(k is Enum ? k.name : k.toString(), v))..removeWhere'
-        ' ((k, v) => v.isEmpty) );';
-  }
-
-  final hasFunctionValidation = _hasValidation(element);
-  if (hasFunctionValidation) {
-    final firstIndex = element.name.replaceFirstMapped(
-      RegExp('[a-zA-Z0-9]'),
-      (match) => match.input.substring(match.start, match.end).toUpperCase(),
-    );
-    final className = '${firstIndex}Args';
-
-    final params = [...element.parameters]
-      ..sort((a, b) => _orderForParameter(a) - _orderForParameter(b));
-
-    validations.add(
-      'final _validation = $className(${params.map((e) {
-        final type = e.type.getDisplayString(withNullability: true);
-        final getter =
-            isReqCtx(e.type) ? 'ctx' : '(args["${e.name}"] as $type)';
-        return '${e.isNamed ? '${e.name}:' : ''}$getter';
-      }).join(',')}).validate();'
-      '${validationErrorMapAddAll('_validation')}',
-    );
-  }
-  bool makeGlobalValidation = hasFunctionValidation;
   final params = <String>[];
   for (final e in element.parameters) {
     final argName = e.name;
@@ -288,39 +254,7 @@ Future<String> resolverFunctionBodyFromElement(
       }
 
       params.add(e.isPositional ? value : '${argName}:$value');
-
-      if (!hasFunctionValidation && _hasValidation(e.type.element)) {
-        makeGlobalValidation = true;
-        final resultName = '${argName}ValidationResult';
-        final _addToMap = argInfo.inline
-            ? validationErrorMapAddAll(resultName)
-            : "validationErrorMap['${argName}'] = [$resultName.toError(property: '${argName}')!];";
-        validations.add('''
-if ($value != null) {
-  final $resultName = ${typeName}Validation.fromValue($value as $typeName);
-  if ($resultName.hasErrors) {
-    $_addToMap
-  }
-}
-''');
-      }
     }
-  }
-  if (makeGlobalValidation) {
-    validations.insert(0, '''
-final validationErrorMap = <String, List<ValidaError>>{};
-''');
-    validations.add('''
-if (validationErrorMap.isNotEmpty) {
-  throw GraphQLError(
-    'Input validation error',
-    extensions: {
-      'validaErrors': validationErrorMap,
-    },
-    sourceError: validationErrorMap,
-  );
-}
-''');
   }
 
   final _call = '${element.name}(${params.join(',')})';

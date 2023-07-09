@@ -65,6 +65,7 @@ Visitor knownDirectivesRule(
         ),
       );
     }
+    return null;
   });
 
   return visitor;

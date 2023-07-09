@@ -39,6 +39,7 @@ Visitor possibleFragmentSpreadsRule(
         ),
       );
     }
+    return null;
   });
   visitor.add<FragmentSpreadNode>((node) {
     final fragName = node.name.value;
@@ -58,6 +59,7 @@ Visitor possibleFragmentSpreadsRule(
         ),
       );
     }
+    return null;
   });
   return visitor;
 }
@@ -76,4 +78,5 @@ GraphQLCompositeType? _getFragmentType(
       return type;
     }
   }
+  return null;
 }

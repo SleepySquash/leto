@@ -50,6 +50,8 @@ Visitor implementInterfaceOnceRule(
         seenInterfaces.add(_name);
       }
     }
+
+    return null;
   }
 
   visitor.add<ObjectTypeDefinitionNode>(

@@ -120,6 +120,8 @@ class ValidationCtx extends SDLValidationCtx {
           type: typeInfo.getInputType(),
           defaultValue: typeInfo.getDefaultValue(),
         ));
+
+        return null;
       });
       node.accept(
         WithTypeInfoVisitor(typeInfo, visitors: [_visitor]),

@@ -17,10 +17,12 @@ Visitor noUnusedVariablesRule(ValidationCtx context) {
 
   visitor.add<VariableDefinitionNode>((def) {
     variableDefs.add(def);
+    return null;
   });
   visitor.add<OperationDefinitionNode>(
     (node) {
       variableDefs = [];
+      return null;
     },
     leave: (operation) {
       final variableNameUsed = <String, bool>{};
@@ -45,6 +47,7 @@ Visitor noUnusedVariablesRule(ValidationCtx context) {
           );
         }
       }
+      return null;
     },
   );
 

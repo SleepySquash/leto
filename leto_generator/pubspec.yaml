@@ -4,26 +4,21 @@ description: Generates GraphQL schemas from Dart classes, for use with package:l
 repository: https://github.com/juancastillo0/leto
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  analyzer: ^4.0.0
-  build: ^2.3.0
-  build_config: ^1.0.0
-  code_builder: ^4.1.0
-  source_gen: ^1.2.2
-
-  collection: ^1.16.0
-  recase: ^4.0.0
-  json_annotation: ^4.7.0
-  freezed_annotation: ^2.0.0
-
-  dart_style: ^2.2.1
+  analyzer: ^6.0.0
+  build: ^2.4.1
+  build_config: ^1.1.1
+  code_builder: ^4.5.0
+  collection: ^1.17.2
+  dart_style: ^2.3.2
   glob: ^2.1.0
-  path: ^1.8.2
-
-  valida: ^0.1.0-dev.1
+  json_annotation: ^4.7.0
   leto_schema: ^0.0.1-dev.3
+  path: ^1.8.2
+  recase: ^4.0.0
+  source_gen: ^1.4.0
 
 dev_dependencies:
   lint: ^1.0.0

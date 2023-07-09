@@ -209,6 +209,7 @@ ValidationRule queryComplexityRuleBuilder({
             ),
           );
         }
+        return null;
       });
   };
 }

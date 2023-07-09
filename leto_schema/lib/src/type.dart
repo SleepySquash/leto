@@ -272,7 +272,7 @@ class _GraphQLNonNullListType<Value, Serialized>
   List<Value> deserialize(SerdeCtx serdeCtx, List<Serialized?> serialized) {
     return serialized
         .map<Value>((v) => v is Value
-            ? v as Value
+            ? v
             : ofType.deserialize(serdeCtx, v as Serialized))
         .toList();
   }
@@ -344,7 +344,7 @@ class _GraphQLNullableListType<Value, Serialized>
       return serialized
           .map<Value>(
             (v) => v is Value
-                ? v as Value
+                ? v
                 : ofType.deserialize(serdeCtx, v as Serialized),
           )
           .toList();

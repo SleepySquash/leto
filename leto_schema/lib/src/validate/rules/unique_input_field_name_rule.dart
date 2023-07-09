@@ -22,10 +22,12 @@ Visitor uniqueInputFieldNamesRule(
     (_) {
       knownNameStack.add(knownNames);
       knownNames = {};
+      return null;
     },
     leave: (_) {
       final prevKnownNames = knownNameStack.removeLast();
       knownNames = prevKnownNames;
+      return null;
     },
   );
   visitor.add<ObjectFieldNode>((node) {
@@ -46,6 +48,7 @@ Visitor uniqueInputFieldNamesRule(
     } else {
       knownNames[fieldName] = node.name;
     }
+    return null;
   });
   return visitor;
 }

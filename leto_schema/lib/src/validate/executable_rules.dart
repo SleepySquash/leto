@@ -95,7 +95,8 @@ class UniqueOperationNamesRule extends SimpleVisitor<List<GraphQLError>> {
     } else {
       operations[name] = node;
     }
-    // return false;
+
+    return null;
   }
 }
 
@@ -123,6 +124,8 @@ class LoneAnonymousOperationRule extends SimpleVisitor<List<GraphQLError>> {
   List<GraphQLError>? visitDocumentNode(DocumentNode node) {
     operationCount =
         node.definitions.whereType<OperationDefinitionNode>().length;
+
+    return null;
   }
 
   @override
@@ -143,6 +146,8 @@ class LoneAnonymousOperationRule extends SimpleVisitor<List<GraphQLError>> {
         )
       ];
     }
+
+    return null;
   }
 }
 
@@ -190,6 +195,8 @@ Visitor knownTypeNamesRule(SDLValidationCtx ctx) {
         extensions: _knownTypeNamesSpec.extensions(),
       ));
     }
+
+    return null;
   });
   return visitor;
 }
@@ -243,6 +250,8 @@ class FragmentsOnCompositeTypesRule extends SimpleVisitor<List<GraphQLError>> {
         ];
       }
     }
+
+    return null;
   }
 }
 
@@ -284,6 +293,8 @@ class VariablesAreInputTypesRule extends SimpleVisitor<List<GraphQLError>> {
         )
       ];
     }
+
+    return null;
   }
 }
 
@@ -341,6 +352,7 @@ class KnownFragmentNamesRule extends SimpleVisitor<List<GraphQLError>> {
   @override
   List<GraphQLError>? visitDocumentNode(DocumentNode node) {
     fragments = fragmentsFromDocument(node);
+    return null;
   }
 
   @override
@@ -357,6 +369,8 @@ class KnownFragmentNamesRule extends SimpleVisitor<List<GraphQLError>> {
         )
       ];
     }
+
+    return null;
   }
 }
 
@@ -389,7 +403,9 @@ Visitor noUnusedFragmentsRule(
     return VisitBehavior.skipTree;
   });
   visitor.add<DocumentNode>(
-    (_) {},
+    (_) {
+      return null;
+    },
     leave: (_) {
       final fragmentNameUsed = <String>{};
       for (final operation in operationDefs) {
@@ -413,6 +429,8 @@ Visitor noUnusedFragmentsRule(
           );
         }
       }
+
+      return null;
     },
   );
 
@@ -466,6 +484,8 @@ TypedVisitor fieldsOnCorrectTypeRule(ValidationCtx context) {
         );
       }
     }
+
+    return null;
   });
 
   return visitor;

@@ -48,36 +48,48 @@ class TypeInfo {
     if (this._typeStack.length > 0) {
       return this._typeStack[this._typeStack.length - 1];
     }
+
+    return null;
   }
 
   GraphQLCompositeType? getParentType() {
     if (this._parentTypeStack.length > 0) {
       return this._parentTypeStack[this._parentTypeStack.length - 1];
     }
+
+    return null;
   }
 
   GraphQLType? getInputType() {
     if (this._inputTypeStack.length > 0) {
       return this._inputTypeStack[this._inputTypeStack.length - 1];
     }
+
+    return null;
   }
 
   GraphQLType? getParentInputType() {
     if (this._inputTypeStack.length > 1) {
       return this._inputTypeStack[this._inputTypeStack.length - 2];
     }
+
+    return null;
   }
 
   GraphQLObjectField? getFieldDef() {
     if (this._fieldDefStack.length > 0) {
       return this._fieldDefStack[this._fieldDefStack.length - 1];
     }
+
+    return null;
   }
 
   Object? getDefaultValue() {
     if (this._defaultValueStack.length > 0) {
       return this._defaultValueStack[this._defaultValueStack.length - 1];
     }
+
+    return null;
   }
 
   GraphQLDirective? getDirective() {
@@ -241,6 +253,8 @@ GraphQLObjectField? globalGetFieldDef(
   } else if (parentType is GraphQLObjectType) {
     return parentType.fieldByName(name);
   }
+
+  return null;
 }
 
 /**

@@ -35,7 +35,7 @@ List<Expression> getGraphQLInterfaces(GeneratorCtx ctx, ClassElement clazz) {
   final List<String> interfaces = getClassConfig(ctx, clazz)?.interfaces ?? [];
   final superType = clazz.supertype;
 
-  String getInterfaceName(ClassElement element) {
+  String getInterfaceName(InterfaceElement element) {
     String name = element.name;
     name = name.startsWith('_') ? name.substring(1) : name;
     final rc = ReCase(name);
@@ -53,7 +53,7 @@ List<Expression> getGraphQLInterfaces(GeneratorCtx ctx, ClassElement clazz) {
       .toList();
 }
 
-GraphQLObject? getClassConfig(GeneratorCtx ctx, ClassElement clazz) {
+GraphQLObject? getClassConfig(GeneratorCtx ctx, InterfaceElement clazz) {
   final annot = graphQLObjectTypeChecker.firstAnnotationOfExact(clazz);
   if (annot != null) {
     return GraphQLObject(
@@ -69,6 +69,8 @@ GraphQLObject? getClassConfig(GeneratorCtx ctx, ClassElement clazz) {
           annot.getField('omitFields')?.toBoolValue() ?? ctx.config.omitFields,
     );
   }
+
+  return null;
 }
 
 bool isInterface(ClassElement clazz) {

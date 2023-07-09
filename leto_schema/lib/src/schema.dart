@@ -117,6 +117,8 @@ class GraphQLSchema {
     } else if (type is GraphQLObjectType && type.isInterface) {
       return type.possibleTypes.where((obj) => !obj.isInterface).toList();
     }
+
+    return null;
   }
 
   final _subTypeMap = <String, Set<String>>{};

@@ -24,7 +24,9 @@ Visitor providedRequiredArgumentsRule(
   final visitor = TypedVisitor();
   // eslint-disable-next-line new-cap
   visitor.mergeInPlace(providedRequiredArgumentsOnDirectivesRule(context));
-  visitor.add<FieldNode>((_) {},
+  visitor.add<FieldNode>((_) {
+    return null;
+  },
       // Validate on leave to allow for deeper errors to appear first.
       leave: (fieldNode) {
     final fieldDef = context.typeInfo.getFieldDef();
@@ -48,6 +50,7 @@ Visitor providedRequiredArgumentsRule(
         );
       }
     }
+    return null;
   });
 
   return visitor;
@@ -82,7 +85,9 @@ TypedVisitor providedRequiredArgumentsOnDirectivesRule(
         .groupFoldBy((a) => a.name.value, (p, e) => p ?? e);
   }
 
-  visitor.add<DirectiveNode>((_) {},
+  visitor.add<DirectiveNode>((_) {
+    return null;
+  },
       // Validate on leave to allow for deeper errors to appear first.
       leave: (directiveNode) {
     final directiveName = directiveNode.name.value;
@@ -110,6 +115,7 @@ TypedVisitor providedRequiredArgumentsOnDirectivesRule(
         }
       }
     }
+    return null;
   });
   return visitor;
 }

@@ -64,6 +64,7 @@ Visitor possibleTypeExtensionsRule(
         ),
       );
     }
+    return null;
   }
 
   final visitor = TypedVisitor();

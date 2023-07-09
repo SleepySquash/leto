@@ -30,6 +30,7 @@ Visitor valuesOfCorrectTypeRule(
       isValidValueNode(localCtx, node);
       return VisitBehavior.skipTree;
     }
+    return null;
   });
   visitor.add<ObjectValueNode>((node) {
     final _type = context.typeInfo.getInputType();
@@ -54,6 +55,7 @@ Visitor valuesOfCorrectTypeRule(
         );
       }
     }
+    return null;
   });
   visitor.add<ObjectFieldNode>((node) {
     final _parentType = context.typeInfo.getInputType();
@@ -74,6 +76,7 @@ Visitor valuesOfCorrectTypeRule(
         ),
       );
     }
+    return null;
   });
   visitor.add<NullValueNode>((node) {
     final type = context.typeInfo.getInputType();
@@ -86,6 +89,7 @@ Visitor valuesOfCorrectTypeRule(
         ),
       );
     }
+    return null;
   });
   visitor.add<EnumValueNode>((node) => isValidValueNode(localCtx, node));
   visitor.add<IntValueNode>((node) => isValidValueNode(localCtx, node));
@@ -183,4 +187,5 @@ VisitBehavior? isValidValueNode(
       );
     }
   }
+  return null;
 }

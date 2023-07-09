@@ -1,11 +1,9 @@
 import 'dart:async';
 
-import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/nullability_suffix.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:code_builder/code_builder.dart';
-import 'package:collection/collection.dart';
 import 'package:leto_generator/resolver_generator.dart';
 import 'package:leto_generator/utils.dart';
 import 'package:leto_schema/leto_schema.dart';
@@ -13,7 +11,7 @@ import 'package:recase/recase.dart';
 import 'package:source_gen/source_gen.dart';
 
 Iterable<Future<FieldInfo>> fieldsFromClass(
-  ClassElement clazz,
+  InterfaceElement clazz,
   GeneratorCtx ctx, {
   bool isInput = false,
 }) {
@@ -89,20 +87,10 @@ Future<List<UnionVarianInfo>> freezedVariants(
 
 GraphQLField getFieldAnnot(GraphQLObject? clazz, Element e) {
   const graphQLFieldTypeChecker = TypeChecker.fromRuntime(GraphQLField);
-  DartObject? _annot;
+
   if (!graphQLFieldTypeChecker.hasAnnotationOf(e, throwOnUnresolved: false)) {
     if (e is FieldElement && e.getter != null) {
       return getFieldAnnot(clazz, e.getter!);
-    } else if (e is ParameterElement) {
-      _annot = e.metadata.firstWhereOrNull(
-        (element) {
-          final type = element.computeConstantValue()?.type;
-          return type != null && graphQLFieldTypeChecker.isExactlyType(type);
-        },
-      )?.computeConstantValue();
-      // if (_annot == null) {
-      //   return const GraphQLField();
-      // }
     }
   }
   final annot = graphQLFieldTypeChecker.firstAnnotationOf(
@@ -249,7 +237,7 @@ Future<FieldInfo> fieldFromParam(
     getter: param.name,
     isMethod: false,
     inputs: [],
-    nonNullable: annot.nullable != true && param.isNotOptional,
+    nonNullable: annot.nullable != true && param.isRequired,
     fieldAnnot: annot,
     description: await documentationOfParameter(param, ctx.buildStep),
     deprecationReason: getDeprecationReason(param),

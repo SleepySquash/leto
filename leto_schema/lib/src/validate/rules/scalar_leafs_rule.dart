@@ -45,6 +45,7 @@ Visitor scalarLeafsRule(ValidationCtx context) {
         );
       }
     }
+    return null;
   });
 
   return visitor;

@@ -58,6 +58,7 @@ Visitor overlappingFieldsCanBeMergedRule(
         ),
       );
     }
+    return null;
   });
 
   return visitor;
@@ -656,6 +657,7 @@ Conflict? findConflict(
     );
     return subfieldConflicts(conflicts, responseName, field1.node, field2.node);
   }
+  return null;
 }
 
 bool sameArguments(
@@ -825,6 +827,7 @@ Conflict? subfieldConflicts(
       [node2, ...conflicts.expand((c) => c.fields2)],
     );
   }
+  return null;
 }
 
 /// A way to keep track of pairs of things when the ordering of the pair does not matter.

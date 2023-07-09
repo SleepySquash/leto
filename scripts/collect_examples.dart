@@ -220,6 +220,8 @@ String? areErrorDifferent(List<String> a, List<String> b) {
       return 'Mismatch in line: $i. Previous: ${a[i]} != Current: ${b[i]}.';
     }
   }
+
+  return null;
 }
 
 class ExampleConfig {
@@ -245,6 +247,8 @@ class ExampleConfig {
           return v.substring(key.length);
         }
       }
+
+      return null;
     }
 
     final end = _find('end') == null ? null : int.parse(_find('end')!);

@@ -50,22 +50,19 @@ class _GraphQLGenerator
     GeneratorCtx ctx,
     ConstantReader ann,
   ) async {
-    final hasFrezzed = freezedTypeChecker.hasAnnotationOfExact(clazz);
     final inputConfig = inputTypeAnnotation(clazz);
-    final hasJsonAnnotation =
-        jsonSerializableTypeChecker.hasAnnotationOf(clazz);
     final enumAnnotation = const TypeChecker.fromRuntime(GraphQLEnum)
         .firstAnnotationOfExact(clazz);
     final unionAnnotation = const TypeChecker.fromRuntime(GraphQLUnion)
         .firstAnnotationOfExact(clazz);
 
-    if (clazz.isEnum && enumAnnotation == null) {
+    if (clazz is EnumElement && enumAnnotation == null) {
       throw Exception(
         'Please use `@GraphQLEnum()` for enum elements. Class: ${clazz.name}.',
       );
     }
 
-    if (hasFrezzed || unionAnnotation != null || inputConfig != null) {
+    if (unionAnnotation != null || inputConfig != null) {
       return generateFromConstructors(clazz, ctx);
     } else if (enumAnnotation != null) {
       return generateEnum(clazz, ctx, enumAnnotation);
@@ -114,7 +111,6 @@ Future<Library> generateFromConstructors(
   GeneratorCtx ctx,
 ) async {
   final inputConfig = inputTypeAnnotation(clazz);
-  final hasFrezzed = freezedTypeChecker.hasAnnotationOfExact(clazz);
   final _annot =
       const TypeChecker.fromRuntime(GraphQLUnion).firstAnnotationOfExact(clazz);
   final classAnnot = getClassConfig(ctx, clazz);
@@ -162,7 +158,7 @@ Future<Library> generateFromConstructors(
     if (_classLib != null) {
       l.replace(_classLib);
     }
-    if (hasFrezzed || inputConfig != null) {
+    if (inputConfig != null) {
       /// We need to generate each Object variant for freezed annotated classes
       for (final variant in variants) {
         if (_classLib == null) {

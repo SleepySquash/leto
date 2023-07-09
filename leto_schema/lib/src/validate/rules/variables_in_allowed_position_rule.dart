@@ -18,9 +18,11 @@ Visitor variablesInAllowedPositionRule(
 
   visitor.add<VariableDefinitionNode>((node) {
     varDefMap[node.variable.name.value] = node;
+    return null;
   });
   visitor.add<OperationDefinitionNode>((node) {
     varDefMap = {};
+    return null;
   }, leave: (operation) {
     final usages = context.getRecursiveVariableUsages(operation);
 
@@ -67,6 +69,7 @@ Visitor variablesInAllowedPositionRule(
         }
       }
     }
+    return null;
   });
   return visitor;
 }

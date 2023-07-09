@@ -60,6 +60,7 @@ Visitor singleFieldSubscriptionsRule(ValidationCtx context) {
         }
       }
     }
+    return null;
   });
 
   return visitor;

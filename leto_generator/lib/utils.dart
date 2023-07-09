@@ -9,20 +9,18 @@ import 'package:analyzer/dart/element/type.dart';
 import 'package:analyzer/src/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:code_builder/code_builder.dart';
-import 'package:collection/collection.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+// import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:leto_generator/config.dart';
 import 'package:leto_generator/resolver_generator.dart';
 import 'package:leto_schema/leto_schema.dart';
 import 'package:source_gen/source_gen.dart';
-import 'package:valida/valida.dart';
 
 export 'utils_graphql.dart';
 
 final _docCommentRegExp = RegExp('(^/// )|(^// )', multiLine: true);
 const graphQLDocTypeChecker = TypeChecker.fromRuntime(GraphQLDocumentation);
-const jsonSerializableTypeChecker = TypeChecker.fromRuntime(JsonSerializable);
-const freezedTypeChecker = TypeChecker.fromRuntime(Freezed);
+// const jsonSerializableTypeChecker = TypeChecker.fromRuntime(JsonSerializable);
+// const freezedTypeChecker = TypeChecker.fromRuntime(Freezed);
 
 class GeneratorCtx {
   final Config config;
@@ -88,6 +86,8 @@ GraphQLDocumentation? getDocumentation(Element element) {
       typeName: _typeName ?? _typeFunc,
     );
   }
+
+  return null;
 }
 
 String? getDeprecationReason(Element element) {
@@ -103,6 +103,8 @@ String? getDeprecationReason(Element element) {
         dep.peek('message')?.stringValue ?? 'Expires: ${deprecated.message}.';
     return reason;
   }
+
+  return null;
 }
 
 String? getDefaultValue(Element elem) {
@@ -114,17 +116,19 @@ String? getDefaultValue(Element elem) {
     return argAnnot.defaultCode;
   }
 
-  final annotDefault = const TypeChecker.fromRuntime(Default)
-      .firstAnnotationOfExact(elem)
-      ?.getField('defaultValue');
-  final annotJsonKey = const TypeChecker.fromRuntime(JsonKey)
-      .firstAnnotationOfExact(elem)
-      ?.getField('defaultValue');
+  // final annotDefault = const TypeChecker.fromRuntime(Default)
+  //     .firstAnnotationOfExact(elem)
+  //     ?.getField('defaultValue');
+  // final annotJsonKey = const TypeChecker.fromRuntime(JsonKey)
+  //     .firstAnnotationOfExact(elem)
+  //     ?.getField('defaultValue');
 
-  final annot = annotDefault ?? annotJsonKey;
-  if (annot != null) {
-    return dartObjectToString(annot);
-  }
+  // final annot = annotDefault ?? annotJsonKey;
+  // if (annot != null) {
+  //   return dartObjectToString(annot);
+  // }
+
+  return null;
 }
 
 String? getAttachments(Element element) {
@@ -158,13 +162,14 @@ String? getAttachments(Element element) {
           .join() +
       (() {
         // TODO: 1G ValidaNested.overrideValidation
-        final e = element.metadata.firstWhereOrNull(
-          (element) => const TypeChecker.fromRuntime(ValidaField)
-              .isAssignableFromType(element.computeConstantValue()!.type!),
-        );
-        if (e == null) return '';
-        final _validaAnnot = getSourceCodeAnnotation(e);
-        return 'ValidaAttachment($_validaAnnot),';
+        // final e = element.metadata.firstWhereOrNull(
+        //   (element) => const TypeChecker.fromRuntime(ValidaField)
+        //       .isAssignableFromType(element.computeConstantValue()!.type!),
+        // );
+        // if (e == null) return '';
+        // final _validaAnnot = getSourceCodeAnnotation(e);
+        // return 'ValidaAttachment($_validaAnnot),';
+        return '';
       }()) +
       fieldAnnotations +
       ']';
@@ -253,7 +258,7 @@ String dartObjectToString(DartObject v) {
   if (v.toStringValue() != null) {
     return literalString(v.toStringValue()!).accept(DartEmitter()).toString();
   }
-  if (type is InterfaceType && type.element.isEnum) {
+  if (type is InterfaceType && type.element is EnumElement) {
     // Find the index of the enum, then find the member.
     for (final field in type.element.fields) {
       if (field.isEnumConstant && field.isStatic) {
