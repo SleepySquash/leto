@@ -356,7 +356,7 @@ class _GraphQLNullableListType<Value, Serialized>
     }
     return serialized
         .map<Value?>(
-          (v) => v is Value? ? v : ofType.deserialize(serdeCtx, v),
+          (v) => v is Value? ? v as Value? : ofType.deserialize(serdeCtx, v),
         )
         .toList();
   }
